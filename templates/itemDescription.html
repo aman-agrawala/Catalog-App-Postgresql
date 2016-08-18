@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner menu">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h1>Item Catalog
+			<figure class="creator">
+				{% if 'username' not in session %}
+				<img src="{{ url_for('static', filename='blank_user.gif') }}">
+				<figcaption>You're not logged in</figcaption>
+				{% else %}
+				<img src = '{{session.picture}}'>
+				<figcaption>{{session.username}}</figcaption>
+				{% endif %}
+			</figure>
+			</h1>
+
+		</div>
+	</div>
+
+
+
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+
+	{% for message in messages %}
+		<ul>
+			<li><strong>{{message}}</strong></li>
+		</ul>
+	{%endfor%}
+	{%endif%}
+{%endwith%}
+
+<div class = 'description'>
+<p><h1>{{item.name}}</h1><p>
+
+<h3>{{item.description}}</h3>
+<br>
+<img src = '{{item.picture}}' style="width:304px;height:228px;">
+<br>
+<a href = '{{url_for("editItem", category_id = item.category_id, item_id = item.id)}}'>Edit</a>
+<br>
+<a href = '{{url_for("deleteItem", category_id = item.category_id, item_id = item.id)}}'>Delete</a>
+
+</div>
+
+{%endblock%}
