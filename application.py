@@ -58,7 +58,7 @@ CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']\
 
 # SQLAlchemy code to connect to database and create the database
 # sessionmaker
-engine = create_engine('postgresql+psycopg2://catalog:catalog@localhost/catalog')
+engine = create_engine('postgresql+psycopg2://grader:grader@localhost/grader')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)

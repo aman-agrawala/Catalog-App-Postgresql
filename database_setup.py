@@ -65,6 +65,6 @@ class Item(Base):
             }
 
 
-engine = create_engine('postgresql+psycopg2://catalog:catalog@localhost/catalog')
+engine = create_engine('postgresql+psycopg2://grader:grader@localhost/grader')
 
 Base.metadata.create_all(engine)
